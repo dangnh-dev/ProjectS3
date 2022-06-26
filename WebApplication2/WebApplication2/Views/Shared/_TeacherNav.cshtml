@@ -1,0 +1,24 @@
+﻿<ul class="sidebar-menu">
+    <li class="header">MAIN NAVIGATION</li>
+    <li class="treeview">
+        <a href="@Url.Action("Index","Dashboard")">
+            <i class="fa fa-edit"></i> <span>Dashboard</span>
+        </a>
+    </li>
+    <li class="treeview">
+        <a href="@Url.Action("ListStudent","Student")">
+            <i class="fa fa-edit"></i> <span>Student</span>
+        </a>
+    </li>
+    <li class="treeview">
+        <a href="#competitisonSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+            <i class="fa fa-table"></i> <span>Competitions</span>
+        </a>
+        <ul class="collapse" id="competitisonSubmenu">
+            <li><a href="@Url.Action("Index","Competition")"><i class="fa fa-th-list"></i> <span>List Competition</span></a></li>
+            <li><a href="@Url.Action("MyCompetition","Competition")"><i class="fa fa-user"></i> <span>My Competition</span></a></li>
+            <li><a href="@Url.Action("CompetitionInvited","Competition")"><i class="fa fa-envelope"></i> <span>Competition Invited</span></a></li>
+        </ul>
+    </li>
+
+</ul>

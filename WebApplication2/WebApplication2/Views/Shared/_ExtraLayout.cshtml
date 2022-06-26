@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="shortcut icon" href="img/fav.png">
+
+    <meta name="author" content="codepixer">
+
+    <meta name="description" content="">
+
+    <meta name="keywords" content="">
+
+    <meta charset="UTF-8">
+
+    <title>Art Museum</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/Homepage/css")
+</head>
+<body style="display:block">
+
+    <header id="header" class="header-section header-normal">
+        <div class="container-fluid">
+            <div class="logo">
+                <a href="./index.html">
+                    <img src="~/Content/img/pofa_logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="top-social nav-menu">
+                @Html.Partial("_LoginPartial")
+
+            </div>
+            <div class="container">
+                <div class="nav-menu">
+                    <nav class="mainmenu mobile-menu">
+                        <ul>
+                            <li><a href="./index.html">Home</a></li>
+                            <li class="">
+                                <a href="./blog.html">Competition</a>
+                                <ul class="dropdown">
+                                    <li><a href="./about-us.html">List Competitions</a></li>
+                                    <li><a href="./blog-single.html"> Competition Details</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="./about-us.html">Award</a></li>
+                            <li><a href="./schedule.html">Exhibitions</a></li>
+                            <li><a href="./gallery.html">About Us</a></li>
+                            <li><a href="./contact.html">Contacts</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="mobile-menu-wrap">
+                <div class="slicknav_menu">
+                    <a href="#" aria-haspopup="true" role="button" tabindex="0" class="slicknav_btn slicknav_collapsed" style="outline: none;"><span class="slicknav_menutxt">MENU</span><span class="slicknav_icon"><span class="slicknav_icon-bar"></span><span class="slicknav_icon-bar"></span><span class="slicknav_icon-bar"></span></span></a><nav class="slicknav_nav slicknav_hidden" aria-hidden="true" role="menu" style="display: none;">
+                        <ul>
+                            <li><a href="#" role="menuitem">Home</a></li>
+                            <li class="active slicknav_collapsed slicknav_parent">
+                                <a href="#" role="menuitem" aria-haspopup="true" tabindex="-1" class="slicknav_item slicknav_row" style="outline: none;">
+                                    <a href="./blog.html">Competition</a>
+                                    <span class="slicknav_arrow">►</span>
+                                </a><ul class="dropdown slicknav_hidden" role="menu" aria-hidden="true" style="display: none;">
+                                    <li><a href="./about-us.html" role="menuitem" tabindex="-1">List Competitions</a></li>
+                                    <li><a href="./blog-single.html" role="menuitem" tabindex="-1">Award</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#" role="menuitem">Exhibitions</a></li>
+                            <li><a href="#" role="menuitem">About Us</a></li>
+                            <li><a href="#" role="menuitem">Contacts</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    @RenderBody()
+
+
+
+
+    <footer class="footer-area section-gap background-style">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-md-6 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h6>About Us</h6>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore dolore magna aliqua.
+                        </p>
+                        <p class="footer-text">
+
+                            Copyright &copy;
+                            <script type="61ce3ffbce705e338d4feed6-text/javascript">document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-5  col-md-6 col-sm-6">
+                    <div class="single-footer-widget">
+                        <h6>Newsletter</h6>
+                        <p>Stay update with our latest</p>
+                        <div class="" id="mc_embed_signup">
+                            <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">
+                                <input class="form-control" name="EMAIL" placeholder="Enter Email" onfocus="if (!window.__cfRLUnblockHandlers) return false; this.placeholder = ''" onblur="if (!window.__cfRLUnblockHandlers) return false; this.placeholder = 'Enter Email '" required="" type="email" data-cf-modified-61ce3ffbce705e338d4feed6-="">
+                                <button class="click-btn btn btn-default"><span class="lnr lnr-arrow-right"></span></button>
+                                <div style="position: absolute; left: -5000px;">
+                                    <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+                                </div>
+                                <div class="info"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6 social-widget">
+                    <div class="single-footer-widget">
+                        <h6>Follow Us</h6>
+                        <p>Let us be social</p>
+                        <div class="footer-social d-flex align-items-center">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-dribbble"></i></a>
+                            <a href="#"><i class="fa fa-behance"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    @Scripts.Render("~/Content/js")
+    @Scripts.Render("~/Content/Homepage/js")
+    @RenderSection("scripts", required: false)
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous" type="61ce3ffbce705e338d4feed6-text/javascript"></script>
+    <script type="61ce3ffbce705e338d4feed6-text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13" type="61ce3ffbce705e338d4feed6-text/javascript"></script>
+    <script type="61ce3ffbce705e338d4feed6-text/javascript">
+        $(document).ready(function(){
+              window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+
+                        gtag('config', 'UA-23581568-13');
+                    $(window).scroll(function() {
+                    if($(this).scrollTop() <= 80)
+                        $('.header-section.header-normal').css('background-color','rgba(0, 0, 0, 0)');
+                    else
+                        $('.header-section.header-normal').css('background-color','rgba(0, 0, 0, 0.7)');
+                });
+            })
+
+
+    </script>
+    <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="61ce3ffbce705e338d4feed6-|49" defer=""></script>
+
+
+</body>
+</html>
+

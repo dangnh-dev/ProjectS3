@@ -1,0 +1,70 @@
+﻿@using System.Collections.Generic
+@using System.Linq
+@using WebApplication2.Models
+@model System.Collections.Generic.IEnumerable<WebApplication2.Models.Competition>
+    <section class=" upcoming-event-area" style="background-color:#f3f3f3; padding: 10vw 0 5vw 0 " id="events">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="menu-content pb-60 col-lg-10">
+                    <div class="title text-center">
+                        <h1 class="mb-10">List Of Competitions</h1>
+                        <p>Who are in extremely love with eco friendly system.</p>
+                    </div>
+                </div>
+            </div>
+
+        @{
+            var length = Model.Count();
+            List<Competition> competitions = (List<Competition>)Model;
+        }
+        <div class="row">
+            @if (Model.Any())
+            {
+                for (var i = 0; i < 1; i += 4)
+                {
+                    <div class="col-lg-6 event-left">
+                        <div class="single-events">
+                            <img class="img-fluid" src="@Url.Content(competitions[i ].Image)" style="height: 250px; width: 540px" alt="">
+                            <a href="#"><h4>@competitions[i].CompetitionName</h4></a>
+                            <p>
+                                @competitions[i].ShortDescription
+                            </p>
+                            @Html.ActionLink("VIEW DETAILS", "Details", "Competition", new { Id = @competitions[i].CompetitionId }, new { @class = "primary-btn text-uppercase" })
+                        </div>
+                        <div class="single-events">
+                            <img class="img-fluid" src="@Url.Content(competitions[i + 2].Image)" style="height: 250px; width: 540px" alt="">
+                            <a href="#"><h4>@competitions[i + 2].CompetitionName</h4></a>
+                            <p>
+                                @competitions[i + 2].ShortDescription
+                            </p>
+                            @Html.ActionLink("VIEW DETAILS", "Details", "Competition", new { Id = @competitions[i + 2].CompetitionId }, new { @class = "primary-btn text-uppercase" })
+                        </div>
+
+                    </div>
+                    <div class="col-lg-6 event-right">
+                        <div class="single-events">
+                            <a href="#"><h4>@competitions[i + 1].CompetitionName</h4></a>
+                            <p>
+                                @competitions[i + 1].ShortDescription
+                            </p>
+                            @Html.ActionLink("VIEW DETAILS", "Details", "Competition", new { Id = @competitions[i + 1].CompetitionId }, new { @class = "primary-btn text-uppercase" })
+                            <img class="img-fluid" src="@Url.Content(competitions[i + 1].Image)" style="height: 250px; width: 540px" alt="">
+                        </div>
+                        <div class="single-events">
+                            <a href="#"><h4>@competitions[i + 3].CompetitionName</h4></a>
+                            <p>
+                                @competitions[i + 3].ShortDescription
+                            </p>
+                            @Html.ActionLink("VIEW DETAILS", "Details", "Competition", new { Id = @competitions[i + 3].CompetitionId }, new { @class = "primary-btn text-uppercase" })
+                            <img class="img-fluid" src="@Url.Content(competitions[i + 3].Image)" style="height: 250px; width: 540px" alt="">
+                        </div>
+
+                    </div>
+                }
+            }
+        </div>
+        <div style="text-align:center">
+            <a href="/Competition" class="genric-btn primary circle arrow">See More <span class="lnr lnr-arrow-right"></span></a>
+        </div>
+    </div>
+</section>

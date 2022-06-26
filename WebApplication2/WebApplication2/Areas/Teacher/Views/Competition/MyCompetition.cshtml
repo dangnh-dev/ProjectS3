@@ -1,0 +1,114 @@
+﻿@model PagedList.IPagedList<WebApplication2.Models.Competition>
+@using WebApplication2.Models
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "My Competition";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h2>My Competition</h2>
+                </div>
+                <div class="box-header">
+                    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-success" })
+                </div>
+                @using (Html.BeginForm("Index", "Member", FormMethod.Get))
+                {
+                    <div style="padding:10px">
+                        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { placeholder = "Find by keyword:" })
+                        <input type="submit" value="Search" />
+                    </div>
+
+                }
+                <div class="box-body">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <tr>
+                            <th>
+                                Competition Name
+                            </th>
+                            <th>
+                                Start Date - End Date
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                            <th>
+                                CreateAt
+                            </th>
+                            <th>
+                                Image
+                            </th>
+                            <th>Action</th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="col-md-2">
+                                    <a href="@Url.Action("List", "Submission", new { id = item.CompetitionId })"> @Html.DisplayFor(modelItem => item.CompetitionName)</a>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.StartDate) - @Html.DisplayFor(modelItem => item.EndDate)
+                                </td>
+                                <td>
+                                    @item.Status
+                                    @if (item.Status == null)
+                                    {
+                                        
+                                    }
+                                    else if (item.Status == WebApplication2.Models.Competition.CompetitionStatus.Pending)
+                                    {
+                                        <img src="~/Content/Icons/pending-icon.png" ) />
+                                    }
+                                    else if (item.Status == WebApplication2.Models.Competition.CompetitionStatus.Cancel)
+                                    {
+                                        <img src="~/Content/Icons/cancel-icon.png" ) />
+                                    }
+                                    else if (item.Status == WebApplication2.Models.Competition.CompetitionStatus.Finished)
+                                    {
+                                        <img src="~/Content/Icons/finished-icon.png" ) />
+                                    }
+                                    else if (item.Status == WebApplication2.Models.Competition.CompetitionStatus.Completed)
+                                    {
+                                        <img src="~/Content/Icons/completed-icon.png" ) />
+                                    }
+                                    else if (item.Status == WebApplication2.Models.Competition.CompetitionStatus.Confirmed)
+                                    {
+                                        <img src="~/Content/Icons/confirmed-icon.png" ) />
+                                    }
+                                </td>
+
+                                <td>
+                                    @item.CreatedAt
+                                </td>
+                                <td class="col-md-3">
+                                    <img class="img-responsive" width="200" src="@Url.Content(@item.Image)" alt="Alternate Text" />
+                                </td>
+
+                                <td>
+                                    @if (item.Status == Competition.CompetitionStatus.Completed)
+                                    {
+                                        @Html.ActionLink("Award", "ListAward", "Award", new { competitionId = item.CompetitionId }, new { @class = "btn btn-success" })
+                                    }
+
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.CompetitionId }, new { @class = "btn btn-warning" })
+                                    @Html.ActionLink("Detail", "Detail", new { id = item.CompetitionId }, new { @class = "btn btn-info" })
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.CompetitionId }, new { @class = "btn btn-danger" })
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    Page @(Model.PageCount < Model.PageNumber ? 1 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, page => Url.Action("MyCompetition", new { page, sortOrder = ViewBag.SortOder, currentFilter = ViewBag.CurrentFilter })) 
+</section>

@@ -1,0 +1,183 @@
+﻿@model PagedList.IPagedList<WebApplication2.Models.Competition>
+@using WebApplication2.Models
+@using Microsoft.Ajax.Utilities
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header col-md-12">
+                    <h3 class="" style="text-align:center">Competition List</h3>
+                    @using (Html.BeginForm("Index", "Competition", FormMethod.Get))
+                    {
+                        <p>
+                            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { placeholder = "Keyword", })
+                            <select name="status">
+                                <option value="">All</option>
+                                <option value="@((int)Competition.CompetitionStatus.Cancel)">Cancel</option>
+                                <option value="@((int)Competition.CompetitionStatus.Pending)">Pending</option>
+                                <option value="@((int)Competition.CompetitionStatus.Confirmed)">Confirmed</option>
+                                <option value="@((int)Competition.CompetitionStatus.Completed)">Completed</option>
+                                <option value="@((int)Competition.CompetitionStatus.Finished)">Finished</option>
+                            </select>
+                            <input  class="btn btn-info" type="submit" value="Search" />
+                        </p>
+
+                    }
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="example2" class="table table-bordered table-hover">
+                                    <tr>
+                                        <th>
+                                            Id
+                                        </th>
+                                        <th>
+                                            Competition Name
+                                        </th>
+                                        <th>
+                                            Created By
+                                        </th>
+                                        <th>
+                                            Start Date
+                                        </th>
+                                        <th>
+                                            End Date
+                                        </th>
+                                        <th>
+                                            Image
+                                        </th>
+                                        <th>
+                                            CreatedAt
+                                        </th>
+                                        <th>
+                                            Status
+                                        </th>
+                                        <th>Active</th>
+                                    </tr>
+
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@(item.CompetitionId)</td>
+                                            <td>
+                                                <a href="@Url.Action("List", "Submission", new {id = item.CompetitionId})">@Html.DisplayFor(modelItem => item.CompetitionName)</a>
+                                            </td>
+                                            <td>
+                                                @Html.ActionLink(@item.Creator.FirstName + " " + @item.Creator.LastName, "Details/" + @item.CreatorId, "Member")
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.StartDate)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.EndDate)
+                                            </td>
+                                            <td class="col-md-2">
+                                                <img src="@item.Image" alt="Alternate Text" class="img-thumbnail"/>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modeItem => item.CreatedAt)
+                                            </td>
+                                            <td id="status_@item.CompetitionId" class="col-md-2">
+                                                @if (item.Status == Competition.CompetitionStatus.Confirmed)
+                                                {
+                                                    <img src="~/Content/Icons/confirmed-icon.png" ) />
+                                                }
+                                                else if (item.Status == Competition.CompetitionStatus.Pending)
+                                                {
+                                                    <img src="~/Content/Icons/pending-icon.png" ) />
+                                                }
+                                                else if (item.Status == Competition.CompetitionStatus.Cancel)
+                                                {
+                                                    <img src="~/Content/Icons/cancel-icon.png" ) />
+                                                }
+                                                else if (item.Status == Competition.CompetitionStatus.Finished)
+                                                {
+                                                    <img src="~/Content/Icons/finished-icon.png" ) />
+                                                }
+                                                else if (item.Status == Competition.CompetitionStatus.Completed)
+                                                {
+                                                    <img src="~/Content/Icons/completed-icon.png" ) />
+                                                }
+                                                
+                                                @Html.EnumDropDownListFor(model=>item.Status, new{@class="statustype", id=@item.CompetitionId})
+                                            </td>
+                                            <td class="col-md-2">
+                                                @Html.ActionLink("Detail", "Detail", new {id = item.CompetitionId}, new {@class = "btn btn-info"})
+                                                @Html.ActionLink("Delete", "Delete", new {id = item.CompetitionId}, new {@class = "btn btn-danger"})
+                                            </td>
+                                        </tr>
+                                    }
+
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div>
+                Page @(Model.PageCount < Model.PageNumber ? 1 : Model.PageNumber) of @Model.PageCount
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.SortOder, currentFilter = ViewBag.CurrentFilter }))
+            </div>            
+        </div>
+    </div>
+</section>
+@section scripts
+{
+    <script>
+        function confirmCompetition(id) {
+            var confirmation = confirm("Are you sure you want to confirm?");
+            if (confirmation) {
+                $.ajax({
+                    type: 'get',
+                    url: '@Url.Action("ConfirmCompetition", "Competition")',
+                    data: {
+                        competitionId: id
+                    },
+                    success: function(res) {
+                        if (res === 1) {
+                            $('#status').html("Confirmed");
+                            $('#confirm1').hide();
+                        }
+                    }
+
+                })
+            }
+        }
+
+        $(document).ready(function() {
+            $(".statustype").on("change",
+                function() {
+                    if (confirm("Are you sure you want to change status?")) {
+                        $.ajax({
+                            type: "POST",
+                            url: '@Url.Action("ChangeStatus", "Competition")',
+                            data: {
+                                status: this.value,
+                                competitionId: this.id
+                            },
+                            success: function(res) {
+                                var src = "/Content/Icons/" + res.status.toLowerCase() + "-icon.png";
+                                console.log(src);
+                                $(`#status_${res.id} > img`).attr("src", src);
+                            }
+
+                        })
+                    } else {
+                        return false;
+                    }
+                });
+        });
+
+    </script>
+}

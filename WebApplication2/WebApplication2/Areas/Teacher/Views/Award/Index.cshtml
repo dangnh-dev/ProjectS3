@@ -1,0 +1,37 @@
+﻿@model IEnumerable<WebApplication2.Models.Award>
+
+@{
+    ViewBag.Title = "Index";
+    var stundentName = ViewBag.StudentName;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var picture = ViewBag.Picture;
+    var submissionName = ViewBag.SubmissionName;
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Award Name
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.AwardName)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.SubmissionId }) |
+        @Html.ActionLink("Details", "Details", new { id = item.SubmissionId }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.SubmissionId })
+    </td>
+</tr>
+}
+
+</table>

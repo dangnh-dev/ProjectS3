@@ -1,0 +1,44 @@
+﻿@model IEnumerable<WebApplication2.Models.Submission>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Submission</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Competition.CompetitionName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Picture)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="col-md-3">
+                @Html.DisplayFor(modelItem => item.Competition.CompetitionName)
+            </td>
+            <td class="col-md-2">
+                <img class="img-thumbnail" src="@Url.Content(item.Picture)" alt="Alternate Text" />
+            </td>
+            <td class="col-md-3">
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.SubmissionId }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Details", "Details", new { id = item.SubmissionId }, new { @class = "btn btn-info" })
+        
+            </td>
+        </tr>
+    }
+
+</table>

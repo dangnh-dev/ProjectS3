@@ -1,0 +1,81 @@
+﻿@model WebApplication2.Models.Competition
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="banner-area relative ">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white pt-20 pb-20">
+                    @Html.DisplayFor(model => model.CompetitionName)
+                </h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <div class="row section-gap">
+        <div class="col-md-5">
+            <main class="site-main">
+                <h2 style="padding-left:200px;">
+                    Register to @Html.DisplayFor(model => model.CompetitionName)
+                </h2>
+                <br />
+
+                @Html.Action("RegisterPartialView", "Submission", new { competitionId = Model.CompetitionId })
+
+
+            </main>
+        </div>
+        <div class="col-md-7">
+            <section style="padding-right:10%">
+                <div class="cat-top-right">
+                    <img class="img-responsive img-rounded" src="@Url.Content(Model.Image)" />
+                </div>
+                <div class="cat-top-left">
+                    <h1 style="padding:5px;">
+                        @Html.DisplayFor(model => model.CompetitionName)
+                    </h1>
+                    <p>@Html.DisplayNameFor(model => model.StartDate): @Html.DisplayFor(model => model.StartDate)</p>
+                    <p>@Html.DisplayNameFor(model => model.EndDate): @Html.DisplayFor(model => model.EndDate)</p>
+                </div>
+
+
+            </section>
+        </div>
+    </div>
+
+    
+
+
+
+@section Scripts {
+
+    <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        var myWidget = cloudinary.createUploadWidget({
+            cloudName: 'hanv11',
+            uploadPreset: 'bpmopgln'
+        },
+            (error, result) => {
+                if (!error && result && result.event === "success") {
+                    console.log('Done! Here is the image info: ', result.info);
+                    var imgLink = result.info.secure_url;
+                    document.querySelector("input[name='Picture']").value = imgLink;
+                    var imgPrevious = document.getElementById("previous");
+                    imgPrevious.src = imgLink;
+                    imgPrevious.classList.remove("hidden");
+                }
+            }
+        );
+
+        document.getElementById("upload_widget1").addEventListener("click", function () {
+            myWidget.open();
+        }, false);
+    </script>
+    @Scripts.Render("~/bundles/jqueryval")
+}

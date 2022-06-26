@@ -1,0 +1,37 @@
+﻿@model IEnumerable<WebApplication2.Models.Account>
+
+<tr class="odd">
+    <th>
+        FirstName
+    </th>
+    <th>
+        LastName
+    </th>
+    <th>
+        Email
+    </th>
+    <th>
+        Birthday
+    </th>
+    <th>Action</th>
+</tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @item.FirstName
+        </td>
+        <td>
+            @item.LastName
+        </td>
+        <td>
+            @item.Email
+        </td>
+        <td>
+            @item.Birthday
+        </td>
+        <td>
+            <button class="btn btn-danger" onclick="remove('@item.Id')">Delete</button>
+        </td>
+    </tr>
+}

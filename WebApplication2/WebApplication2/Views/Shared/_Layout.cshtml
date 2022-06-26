@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+
+<html lang="zxx" class="no-js">
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="shortcut icon" href="~/Content/img/pofa_logo.ico">
+
+    <meta name="author" content="codepixer">
+
+    <meta name="description" content="">
+
+    <meta name="keywords" content="">
+
+    <meta charset="UTF-8">
+
+    <title>Institude of Fine Art</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+
+    @Styles.Render("~/Content/css")
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    @Styles.Render("~/Content/Homepage/css")
+    @Styles.Render("~/Content/bootstrap")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body style="display: block; padding-top: 0px; padding-bottom: 0px;">
+    <button type="button" id="mobile-nav-toggle"><i class="lnr lnr-menu"></i></button>
+    <header id="header" class="header-section header-normal header-scrolled" style="height: 90px">
+        <div class="container">
+                <div class="logo" style="margin-top: -10px">
+                    <a href="/Home/Index"><img src="~/Content/img/pofa_logo.png" alt="" title=""></a>
+                </div>
+                <div class="container">
+                    <div class="nav-menu">
+                        <nav id="nav-menu-container" class="mainmenu mobile-menu">
+                            <ul class="nav-menu sf-js-enabled sf-arrows" style="touch-action: pan-y;">
+                                <li class="menu-active"><a href="/Home/Index" style="color: #0dcaf0">Home</a></li>
+                                <li class=""><a href="/Competition" style="color: #0dcaf0">Competition</a></li>
+                                <li><a href="/Award" style="color: #0dcaf0">Award</a></li>
+                                <li><a href="@Url.Action("About","Home")" style="color: #0dcaf0">About Us</a></li>
+                                <li><a href="@Url.Action("Contact","Home")" style="color: #0dcaf0">Contacts</a></li>
+                                @Html.Partial("_LoginPartial")
+                            </ul>
+                        </nav>
+                    </div>
+ 
+                </div>
+            </div>
+    </header>
+    @RenderBody()
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="footer-logo-item">
+                        <div class="f-logo">
+                            <a href="#"><img src="~/Content/img/pofa_logo.png" alt=""></a>
+                        </div>
+                        <p>
+                            Bring us amazing <br>
+                            We will bring it  <br>
+                            to the world
+                        </p>
+                        <div class="social-links">
+                            <h6>Follow us</h6>
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-google-plus"></i></a>
+                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="footer-widget">
+                        <h5>About Us</h5>
+                        <div class="footer-blog">
+                            <a href="#" class="fb-item">
+                                <h6>Phan Ha Anh Duc</h6>
+                                <span class="blog-time"><i class="fa fa-facebook"></i> Phan Ha Anh Duc</span>
+                            </a>
+                            <a href="#" class="fb-item">
+                                <h6>Truong Duc Nguyen</h6>
+                                <span class="blog-time"><i class="fa fa-facebook"></i> Truong Nguyen</span>
+                            </a>
+                            <a href="#" class="fb-item">
+                                <h6>Le Si Tuyen</h6>
+                                <span class="blog-time"><i class="fa fa-facebook"></i> Le Tuyen</span>
+                            </a>
+                            <a href="#" class="fb-item">
+                                <h6>Nguyen Hai Dang</h6>
+                                <span class="blog-time"><i class="fa fa-facebook"></i> Hai Dang</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="footer-widget">
+                        <h5>Get Info</h5>
+                        <ul class="footer-info">
+                            <li>
+                                <i class="fa fa-phone"></i>
+                                <span>Phone:</span>
+                                19001009
+                            </li>
+                            <li>
+                                <i class="fa fa-envelope-o"></i>
+                                <span>Email:</span>
+                                fineart.info@gmail.com
+                            </li>
+                            <li>
+                                <i class="fa fa-map-marker"></i>
+                                <span>Address</span>
+                                54 P. Le Thanh Nghi, Bach Khoa, Hai Ba Trung, Ha Noi, Viet Nam
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-text">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <div class="ct-inside">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                             This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="" target="_blank">HMLA</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Content/js")
+    @Scripts.Render("~/Content/Homepage/js")
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    @RenderSection("scripts", required: false)
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous" type="61ce3ffbce705e338d4feed6-text/javascript"></script>
+    <script type="61ce3ffbce705e338d4feed6-text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13" type="61ce3ffbce705e338d4feed6-text/javascript"></script>
+
+    <script type="61ce3ffbce705e338d4feed6-text/javascript">
+        $(document).ready(function(){
+              window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+
+                        gtag('config', 'UA-23581568-13');
+                    $(window).scroll(function() {
+                    if($(this).scrollTop() <= 80)
+                        $('.header-section.header-normal').css('background-color','rgba(0, 0, 0, 0)');
+                    else
+                        $('.header-section.header-normal').css('background-color','rgba(0, 0, 0, 0.7)');
+                });
+            })
+
+
+    </script>
+    <script src="https://ajax.cloudflare.com/cdn-cgi/scripts/7089c43e/cloudflare-static/rocket-loader.min.js" data-cf-settings="61ce3ffbce705e338d4feed6-|49" defer=""></script>
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,51 @@
+﻿@model PagedList.IPagedList<WebApplication2.Models.Submission>
+@using WebApplication2.Models
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="banner-area relative">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white pt-20 pb-20">
+                    List Submissions
+                </h1>
+                <p class="text-white link-nav"><a href="/Home/Index">Home </a> <span class="lnr lnr-arrow-right"></span> <a href="#">List Submission</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section class="gallery-area section-gap gallery-page-area" id="gallery">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="menu-content pb-70 col-lg-8">
+                <div class="title text-center">
+                    <h1 class="mb-10">@Html.DisplayFor(model => model.First().Competition.CompetitionName)</h1>
+                    <p>That's all submissions of @Html.DisplayFor(model => model.First().Competition.CompetitionName)</p>
+                </div>
+            </div>
+        </div>
+        <div id="grid-container" class="row">
+            @foreach (var item in Model)
+            {
+                <a href="@Url.Action("Details", "Submission", new {id = item.SubmissionId})">
+                    <div><img class="grid-item" src="@item.Picture"></div>
+                </a>
+
+            }
+
+
+        </div>
+        <nav aria-label="Page navigation example">
+
+            <div style="color: white;" class="pagination justify-content-center"> @Html.PagedListPager(Model, page => Url.Action("List", new { page, sortOrder = ViewBag.SortOder, currentFilter = ViewBag.CurrentFilter }))</div>
+        </nav>
+    </div>
+</section>
