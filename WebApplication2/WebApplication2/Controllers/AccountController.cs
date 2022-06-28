@@ -175,7 +175,7 @@ namespace WebApplication2.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new Account { UserName = model.Email, Email = model.Email, CreatedAt = DateTime.Now, UpdateAt = DateTime.Now, FirstName = model.FirstName, LastName = model.LastName, Birthday = model.Birthday, Gender = (Account.GenderType)model.Gender, Avatar = "/Content/img/logologin.png", UserType = Account.UserTypes.Student };
+                var user = new Account { UserName = model.Email, Email = model.Email, CreatedAt = DateTime.Now, UpdateAt = DateTime.Now, FirstName = model.FirstName, LastName = model.LastName, Birthday = model.Birthday, Gender = (Account.GenderType)model.Gender, Avatar = "/Content/img/logologin.png" };
 
                 var result = await UserManager.CreateAsync(user, model.Password);
 
